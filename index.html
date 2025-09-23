@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <meta
+      name="description"
+      content="Aplikasi CRUD sederhana untuk mengelola data mahasiswa: tambah, edit, hapus, dan lihat daftar mahasiswa."
+    />
+    <title>CRUD Sederhana Data Mahasiswa dengan HTML, CSS & JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <h1>Data Mahasiswa — CRUD Sederhana</h1>
+    </header>
+
+    <main>
+      <!-- FORM INPUT MAHASISWA START -->
+      <section id="form-section">
+        <h2>Form Data Mahasiswa</h2>
+        <form id="form-mahasiswa" autocomplete="off">
+          <!-- Input Nama Mahasiswa -->
+          <div>
+            <label for="nama">Nama:</label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              required
+              placeholder="Masukkan nama"
+            />
+          </div>
+
+          <!-- Input NIM Mahasiswa -->
+          <div>
+            <label for="nim">NIM:</label>
+            <input
+              type="text"
+              id="nim"
+              name="nim"
+              required
+              placeholder="Masukkan NIM"
+            />
+          </div>
+
+          <!-- Input Alamat Mahasiswa -->
+          <div>
+            <label for="alamat">Alamat:</label>
+            <input
+              type="text"
+              id="alamat"
+              name="alamat"
+              required
+              placeholder="Masukkan alamat"
+            />
+          </div>
+
+          <!-- Hidden input untuk ID mahasiswa saat edit -->
+          <input type="hidden" id="id" name="id" />
+
+          <!-- Tombol Aksi Form -->
+          <div id="form-actions">
+            <button
+              type="submit"
+              id="btn-simpan"
+              aria-label="Simpan Data Mahasiswa"
+            >
+              Simpan
+            </button>
+            <button
+              type="button"
+              id="btn-reset"
+              aria-label="Reset Form Data Mahasiswa"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </section>
+      <!-- FORM INPUT MAHASISWA END -->
+
+      <!-- TABEL DATA MAHASISWA START -->
+      <section id="table-section">
+        <h2>Daftar Mahasiswa</h2>
+
+        <div id="search-and-filter-wrapper">
+          <!-- Upload and Actions Section-->
+          <div id="upload-actions-section">
+            <div id="upload-wrapper">
+              <label for="fileUpload">
+                <img src="assets/fa-upload.svg" alt="Upload" class="icon" />
+                Upload CSV/XLSX
+              </label>
+              <input type="file" id="fileUpload" accept=".csv, .xlsx" />
+            </div>
+
+            <div id="actions-wrapper">
+              <button id="btn-download-pdf">
+                <img src="assets/fa-file-pdf.svg" alt="PDF" class="icon" />
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Search and Sort Section-->
+          <div id="search-sort-section">
+            <div id="search-wrapper">
+              <label for="search">Cari Mahasiswa:</label>
+              <input
+                type="text"
+                id="search"
+                placeholder="Cari berdasarkan nama atau NIM"
+                aria-label="Cari Mahasiswa"
+              />
+            </div>
+
+            <div id="sort-wrapper">
+              <label for="sort">Urutkan Data:</label>
+              <div class="trigger">
+                <span
+                  ><img
+                    src="assets/fa-sliders.svg"
+                    alt="Sliders"
+                    class="icon2"
+                  />
+                  Default</span
+                >
+                <img
+                  src="assets/fa-chevron-down.svg"
+                  alt="Chevron Down"
+                  class="icon-sort"
+                  id="sort-icon"
+                />
+              </div>
+
+              <ul class="options">
+                <li data-value="">
+                  <img
+                    src="assets/fa-sliders.svg"
+                    alt="Sliders"
+                    class="icon2"
+                  />
+                  Default
+                </li>
+                <li data-value="nama-asc">
+                  <img
+                    src="assets/fa-arrow-up-a-z.svg"
+                    alt="Arrow Up A-Z"
+                    class="icon2"
+                  />
+                  Nama
+                </li>
+                <li data-value="nama-desc">
+                  <img
+                    src="assets/fa-arrow-down-a-z.svg"
+                    alt="Arrow Down Z-A"
+                    class="icon2"
+                  />
+                  Nama
+                </li>
+                <li data-value="nim-asc">
+                  <img
+                    src="assets/fa-arrow-up-1-9.svg"
+                    alt="Arrow Up 1-9"
+                    class="icon2"
+                  />
+                  NIM
+                </li>
+                <li data-value="nim-desc">
+                  <img
+                    src="assets/fa-arrow-down-9-1.svg"
+                    alt="Arrow Down 9-1"
+                    class="icon2"
+                  />
+                  NIM
+                </li>
+              </ul>
+
+              <select
+                id="sort"
+                name="sort"
+                aria-label="Urutkan Mahasiswa"
+                hidden
+              >
+                <option value="">Default</option>
+                <option value="nama-asc">Nama Asc</option>
+                <option value="nama-desc">Nama Desc</option>
+                <option value="nim-asc">NIM Asc</option>
+                <option value="nim-desc">NIM Desc</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="table-mahasiswa">
+            <caption>
+              Daftar data mahasiswa yang tersimpan
+            </caption>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Alamat</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <!-- Baris tabel akan dirender melalui JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- TABEL DATA MAHASISWA END -->
+    </main>
+
+    <footer>
+      <p>&copy; 2025 CRUD Sederhana. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT CRUD -->
+    <script src="script.js"></script>
+    <!-- jsPDF: library utama untuk generate file PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- jsPDF-AutoTable: plugin tambahan jsPDF untuk membuat tabel PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- SheetJS (XLSX.js) library untuk membaca file Excel/CSV di browser -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  </body>
+</html>
