@@ -1,0 +1,10 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Web project files
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Config / data files
+*.md text eol=lf

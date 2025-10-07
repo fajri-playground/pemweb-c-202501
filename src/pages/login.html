@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Halaman login untuk mengakses aplikasi CRUD data mahasiswa."
+    />
+    <title>Masuk | CRUD Data Mahasiswa Teknik Unhas</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
+    <!-- SCRIPT JAVASCRIPT LOGIN -->
+    <script src="../scripts/login.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Selamat Datang - Masuk</h1>
+    </header>
+
+    <main>
+      <section id="form-section">
+        <div id="form-header">
+          <h2>Masuk</h2>
+          <p>Masukkan akun kredensial Anda</p>
+        </div>
+
+        <form id="login-form" autocomplete="off">
+          <div class="field">
+            <label for="identity">Email</label>
+            <input
+              type="text"
+              id="identity"
+              name="identity"
+              required
+              placeholder="Masukkan email"
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Kata Sandi</label>
+            <div class="input-with-icon">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Masukkan kata sandi"
+                autocomplete="current-password"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                class="password-toggle"
+                aria-label="Tampilkan kata sandi"
+                aria-pressed="false"
+              >
+                <img
+                  src="../assets/eye-slash-solid-full.svg"
+                  alt=""
+                  id="password-icon"
+                />
+              </button>
+            </div>
+          </div>
+
+          <div id="form-actions">
+            <button type="submit" id="btn-login" aria-label="Masuk ke aplikasi">
+              Masuk
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 CRUD Sederhana. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
