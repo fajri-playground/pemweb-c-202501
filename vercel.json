@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [{ "src": "src/**/*", "use": "@vercel/static" }],
+  "routes": [
+    { "src": "^(.*)\\.html$", "status": 301, "headers": { "Location": "$1" } },
+    { "src": "^/$", "dest": "/src/pages/index.html" },
+    { "src": "^/login$", "dest": "/src/pages/login.html" },
+    { "src": "^/dasbor$", "dest": "/src/pages/dasbor.html" },
+    { "src": "/styles/(.*)", "dest": "/src/styles/$1" },
+    { "src": "/scripts/(.*)", "dest": "/src/scripts/$1" },
+    { "src": "/assets/(.*)", "dest": "/src/assets/$1" },
+    { "src": "/data/(.*)", "dest": "/data/$1" }
+  ]
+}
