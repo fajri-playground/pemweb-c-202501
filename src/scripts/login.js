@@ -11,6 +11,8 @@
     return;
   }
 
+  document.body.classList.remove("app-locked");
+
   // Akun default (email + hash password SHA-256)
   const defaultUsers = [
     {

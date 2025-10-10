@@ -16,10 +16,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <!-- SheetJS (XLSX.js) library untuk membaca file Excel/CSV di browser -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Data dummy awal mahasiswa -->
+    <script src="../scripts/data/mahasiswa-initial.js" defer></script>
     <!-- SCRIPT JAVASCRIPT CRUD -->
     <script src="../scripts/dasbor.js" defer></script>
   </head>
-  <body>
+  <body class="app-locked">
     <header>
       <h1>Data Mahasiswa Teknik Unhas — CRUD Sederhana</h1>
       <button id="btn-logout" aria-label="Keluar dari aplikasi">Logout</button>
@@ -28,65 +30,204 @@
     <main>
       <!-- FORM INPUT MAHASISWA START -->
       <section id="form-section">
-        <h2>Form Data Mahasiswa</h2>
+        <div class="form-section-header">
+          <h2>Form Data Mahasiswa</h2>
+          <p>
+            Lengkapi data berikut untuk menambah atau memperbarui informasi
+            mahasiswa.
+          </p>
+        </div>
+
         <form id="form-mahasiswa" autocomplete="off">
-          <!-- Input Nama Mahasiswa -->
-          <div>
-            <label for="nama">Nama:</label>
-            <input
-              type="text"
-              id="nama"
-              name="nama"
-              required
-              placeholder="Fulan"
-            />
-          </div>
-
-          <!-- Input NIM Mahasiswa -->
-          <div>
-            <label for="nim">NIM:</label>
-            <input
-              type="text"
-              id="nim"
-              name="nim"
-              required
-              maxlength="10"
-              placeholder="D121231038"
-            />
-          </div>
-
-          <!-- Input Alamat Mahasiswa -->
-          <div>
-            <label for="alamat">Alamat:</label>
-            <input
-              type="text"
-              id="alamat"
-              name="alamat"
-              required
-              placeholder="Makassar"
-            />
-          </div>
-
-          <!-- Hidden input untuk ID mahasiswa saat edit -->
           <input type="hidden" id="id" name="id" />
+          <div class="form-grid">
+            <!-- Kolom kiri -->
+            <div class="form-left">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nama">Nama Lengkap</label>
+                  <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    placeholder="Masukkan nama lengkap"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nim">NIM</label>
+                  <input
+                    type="text"
+                    id="nim"
+                    name="nim"
+                    placeholder="Contoh: D0123456"
+                    maxlength="10"
+                    required
+                  />
+                </div>
+              </div>
 
-          <!-- Tombol Aksi Form -->
-          <div id="form-actions">
-            <button
-              type="submit"
-              id="btn-simpan"
-              aria-label="Simpan Data Mahasiswa"
-            >
-              Simpan
-            </button>
-            <button
-              type="button"
-              id="btn-reset"
-              aria-label="Reset Form Data Mahasiswa"
-            >
-              Reset
-            </button>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="program-studi">Program Studi</label>
+                  <div class="select-shell select-shell--form">
+                    <select id="program-studi" name="program-studi" required>
+                      <option value="Teknik Informatika" selected>
+                        Teknik Informatika
+                      </option>
+                      <option value="Teknik Mesin">Teknik Mesin</option>
+                      <option value="Teknik Elektro">Teknik Elektro</option>
+                      <option value="Teknik Sipil">Teknik Sipil</option>
+                      <option value="Teknik Industri">Teknik Industri</option>
+                      <option value="Teknik Perkapalan">
+                        Teknik Perkapalan
+                      </option>
+                      <option value="Teknik Sistem Perkapalan">
+                        Teknik Sistem Perkapalan
+                      </option>
+                      <option value="Teknik Geologi">Teknik Geologi</option>
+                      <option value="Teknik Lingkungan">
+                        Teknik Lingkungan
+                      </option>
+                      <option value="Teknik Pertambangan">
+                        Teknik Pertambangan
+                      </option>
+                      <option value="Arsitektur">Arsitektur</option>
+                      <option value="Teknik Perencanaan Wilayah dan Kota">
+                        Teknik Perencanaan Wilayah dan Kota
+                      </option>
+                      <option value="Perencanaan Wilayah dan Kota">
+                        Perencanaan Wilayah dan Kota
+                      </option>
+                      <option value="Teknologi Kebumian dan Lingkungan">
+                        Teknologi Kebumian dan Lingkungan
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="angkatan">Angkatan</label>
+                  <input
+                    type="number"
+                    id="angkatan"
+                    name="angkatan"
+                    value="2023"
+                    min="2000"
+                    max="2025"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="alamat">Alamat</label>
+                  <input
+                    type="text"
+                    id="alamat"
+                    name="alamat"
+                    placeholder="Contoh: Jl. Perintis Kemerdekaan, Makassar"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row form-row-split">
+                <div class="form-group form-group-notes">
+                  <label id="label-catatan" for="catatan">Catatan</label>
+                  <div
+                    id="catatan"
+                    class="catatan-field"
+                    contenteditable="true"
+                    role="textbox"
+                    aria-multiline="true"
+                    aria-labelledby="label-catatan"
+                    data-placeholder="opsional"
+                    tabindex="0"
+                  ></div>
+                </div>
+
+                <div class="form-stack">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="name@univ.ac.id"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="ipk">IPK</label>
+                    <input
+                      type="number"
+                      id="ipk"
+                      name="ipk"
+                      placeholder="3.50"
+                      step="0.01"
+                      min="0"
+                      max="4"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="jenis-kelamin">Jenis Kelamin</label>
+                    <div class="select-shell select-shell--form">
+                      <select id="jenis-kelamin" name="jenis-kelamin" required>
+                        <option value="Laki-laki" selected>Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kolom kanan -->
+            <div class="form-right">
+              <div class="foto-wrapper">
+                <label>Foto Mahasiswa</label>
+                <div class="foto-preview">
+                  <img
+                    src="../assets/user-solid-full.svg"
+                    alt="Foto Mahasiswa"
+                    id="foto-preview-img"
+                    data-default-src="../assets/user-solid-full.svg"
+                  />
+                </div>
+                <label
+                  class="upload-box"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Unggah foto mahasiswa"
+                  for="foto-upload"
+                >
+                  <input
+                    type="file"
+                    id="foto-upload"
+                    accept=".png,.jpg,.jpeg"
+                  />
+                  <p>
+                    <strong>Klik untuk mengunggah</strong> atau seret dan lepas
+                    <br />
+                    <span>PNG, JPG, JPEG (MAX. 2MB)</span>
+                  </p>
+                </label>
+              </div>
+            </div>
           </div>
+          <div id="form-actions">
+            <button type="submit" id="btn-simpan">Simpan</button>
+            <button type="button" id="btn-reset">Reset</button>
+          </div>
+          <p
+            id="form-feedback"
+            class="form-feedback is-hidden"
+            role="status"
+            aria-live="polite"
+          ></p>
         </form>
       </section>
       <!-- FORM INPUT MAHASISWA END -->
@@ -96,173 +237,251 @@
         <h2>Daftar Mahasiswa</h2>
 
         <div id="search-and-filter-wrapper">
-          <!-- Upload and Actions Section-->
-          <div id="upload-actions-section">
-            <div id="upload-wrapper">
-              <label for="fileUpload">
-                <img src="../assets/fa-upload.svg" alt="Upload" class="icon" />
-                Upload CSV/XLSX
-              </label>
-              <input type="file" id="fileUpload" accept=".csv, .xlsx" />
+          <!-- Active Filters -->
+          <div class="active-filters-bar">
+            <span class="filter-label">Filter Aktif:</span>
+            <div class="active-filter-tags">
+              <span
+                id="active-prodi-filter"
+                class="filter-tag"
+                style="display: none"
+              >
+                <span class="filter-prefix">Prodi:</span>
+                <span class="filter-value"></span>
+              </span>
+              <span
+                id="active-angkatan-filter"
+                class="filter-tag"
+                style="display: none"
+              >
+                <span class="filter-prefix">Angkatan:</span>
+                <span class="filter-value"></span>
+              </span>
+              <span
+                id="active-sort-filter"
+                class="filter-tag"
+                style="display: none"
+              >
+                <span class="filter-prefix">Urutkan:</span>
+                <span class="filter-value"></span>
+              </span>
+            </div>
+            <button
+              type="button"
+              id="btn-reset-filters"
+              class="reset-filter-btn"
+            >
+              <img src="../assets/refresh.svg" alt="Reset" class="icon" />
+              Reset Filter
+            </button>
+          </div>
+
+          <!-- Top Row: Data Count + Action Buttons -->
+          <div class="toolbar-row header-row">
+            <div class="data-summary">
+              <span id="table-total-data" class="data-chip">100 Data</span>
+              <span class="total-info">Total 1,250 Mahasiswa</span>
+              <span id="table-average-ipk" class="stat-info">
+                <span class="stat-label">Rata-rata IPK:</span>
+                <span class="stat-value" data-role="ipk-current">-</span>
+                <span class="stat-divider">/</span>
+                <span class="stat-subinfo"
+                  >Total <span data-role="ipk-total">-</span></span
+                >
+              </span>
             </div>
 
-            <div id="actions-wrapper">
-              <button id="btn-download-pdf">
-                <img src="../assets/fa-file-pdf.svg" alt="PDF" class="icon" />
-                Export PDF
+            <div class="primary-actions">
+              <div id="upload-actions-section">
+                <div id="upload-json-wrapper">
+                  <label for="jsonUpload">
+                    <img
+                      src="../assets/fa-upload.svg"
+                      alt="Upload"
+                      class="icon"
+                    />
+                    Upload JSON
+                  </label>
+                  <input type="file" id="jsonUpload" accept=".json" />
+                </div>
+                <div id="upload-wrapper">
+                  <label for="fileUpload">
+                    <img
+                      src="../assets/fa-upload.svg"
+                      alt="Upload"
+                      class="icon"
+                    />
+                    Upload CSV/XLSX
+                  </label>
+                  <input type="file" id="fileUpload" accept=".csv, .xlsx" />
+                </div>
+                <button id="btn-download-pdf" class="ghost-button">
+                  <img src="../assets/fa-file-pdf.svg" alt="PDF" class="icon" />
+                  Export PDF
+                </button>
+              </div>
+
+              <button type="button" id="btn-hapus-semua" class="control-button">
+                Hapus Semua
               </button>
             </div>
           </div>
 
-          <!-- Search and Sort Section-->
-          <div id="search-sort-section">
-            <div id="search-wrapper">
-              <label for="search">Cari Mahasiswa:</label>
+          <!-- Bottom Row: Controls -->
+          <div class="toolbar-row controls-row">
+            <div class="control control-select" data-control="per-page">
+              <label for="entries-per-page">Data per halaman</label>
+              <div class="select-shell">
+                <select id="entries-per-page" name="entries-per-page">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="control control-select control-prodi">
+              <label for="filter-prodi">Program Studi</label>
+              <div class="select-shell">
+                <select id="filter-prodi" name="filter-prodi">
+                  <option value="">Semua Prodi</option>
+                  <option value="Teknik Informatika">Teknik Informatika</option>
+                  <option value="Teknik Mesin">Teknik Mesin</option>
+                  <option value="Teknik Elektro">Teknik Elektro</option>
+                  <option value="Teknik Sipil">Teknik Sipil</option>
+                  <option value="Teknik Industri">Teknik Industri</option>
+                  <option value="Teknik Perkapalan">Teknik Perkapalan</option>
+                  <option value="Teknik Sistem Perkapalan">
+                    Teknik Sistem Perkapalan
+                  </option>
+                  <option value="Teknik Geologi">Teknik Geologi</option>
+                  <option value="Teknik Lingkungan">Teknik Lingkungan</option>
+                  <option value="Teknik Pertambangan">
+                    Teknik Pertambangan
+                  </option>
+                  <option value="Arsitektur">Arsitektur</option>
+                  <option value="Teknik Perencanaan Wilayah dan Kota">
+                    Teknik Perencanaan Wilayah dan Kota
+                  </option>
+                  <option value="Perencanaan Wilayah dan Kota">
+                    Perencanaan Wilayah dan Kota
+                  </option>
+                  <option value="Teknologi Kebumian dan Lingkungan">
+                    Teknologi Kebumian dan Lingkungan
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="control control-angkatan">
+              <div id="filter-angkatan-wrapper">
+                <label for="filter-angkatan">Angkatan</label>
+                <div class="filter-trigger">
+                  <span>Semua Angkatan</span>
+                  <img
+                    src="../assets/fa-chevron-down.svg"
+                    alt="Chevron Down"
+                    class="icon-sort"
+                    id="filter-icon"
+                  />
+                </div>
+
+                <ul class="filter-options">
+                  <li data-value="">Semua Angkatan</li>
+                  <!-- Options akan diisi otomatis oleh JavaScript -->
+                </ul>
+
+                <select
+                  id="filter-angkatan"
+                  aria-label="Filter berdasarkan angkatan"
+                  hidden
+                >
+                  <option value="">Semua Angkatan</option>
+                  <!-- Options akan diisi otomatis oleh JavaScript -->
+                </select>
+              </div>
+            </div>
+
+            <div class="control control-search">
+              <label for="search">Cari Mahasiswa</label>
               <input
                 type="text"
                 id="search"
-                placeholder="Cari berdasarkan nama, NIM, jurusan, angkatan, atau alamat"
+                placeholder="Cari nama, NIM, email, atau lainnya"
                 aria-label="Cari Mahasiswa"
               />
             </div>
 
-            <div id="filter-angkatan-wrapper">
-              <label for="filter-angkatan">Filter Angkatan:</label>
-              <div class="filter-trigger">
-                <span>Semua Angkatan</span>
-                <img
-                  src="../assets/fa-chevron-down.svg"
-                  alt="Chevron Down"
-                  class="icon-sort"
-                  id="filter-icon"
-                />
+            <div class="control control-sort">
+              <label for="sort">Urutkan</label>
+              <div class="select-shell">
+                <select id="sort" name="sort" aria-label="Urutkan Mahasiswa">
+                  <option value="" data-icon="../assets/fa-sliders.svg">
+                    Default
+                  </option>
+                  <option
+                    value="nama-asc"
+                    data-icon="../assets/fa-arrow-up-a-z.svg"
+                  >
+                    Nama (A-Z)
+                  </option>
+                  <option
+                    value="nama-desc"
+                    data-icon="../assets/fa-arrow-down-a-z.svg"
+                  >
+                    Nama (Z-A)
+                  </option>
+                  <option
+                    value="nim-asc"
+                    data-icon="../assets/fa-arrow-up-1-9.svg"
+                  >
+                    NIM (1-9)
+                  </option>
+                  <option
+                    value="nim-desc"
+                    data-icon="../assets/fa-arrow-down-9-1.svg"
+                  >
+                    NIM (9-1)
+                  </option>
+                  <option
+                    value="angkatan-asc"
+                    data-icon="../assets/fa-arrow-up-1-9.svg"
+                  >
+                    Angkatan (lama ke baru)
+                  </option>
+                  <option
+                    value="angkatan-desc"
+                    data-icon="../assets/fa-arrow-down-9-1.svg"
+                  >
+                    Angkatan (baru ke lama)
+                  </option>
+                  <option
+                    value="jurusan-asc"
+                    data-icon="../assets/fa-arrow-up-a-z.svg"
+                  >
+                    Jurusan (A-Z)
+                  </option>
+                  <option
+                    value="jurusan-desc"
+                    data-icon="../assets/fa-arrow-down-a-z.svg"
+                  >
+                    Jurusan (Z-A)
+                  </option>
+                  <option
+                    value="ipk-asc"
+                    data-icon="../assets/fa-arrow-up-1-9.svg"
+                  >
+                    IPK (rendah ke tinggi)
+                  </option>
+                  <option
+                    value="ipk-desc"
+                    data-icon="../assets/fa-arrow-down-9-1.svg"
+                  >
+                    IPK (tinggi ke rendah)
+                  </option>
+                </select>
               </div>
-
-              <ul class="filter-options">
-                <li data-value="">Semua Angkatan</li>
-                <!-- Options akan diisi otomatis oleh JavaScript -->
-              </ul>
-
-              <select
-                id="filter-angkatan"
-                aria-label="Filter berdasarkan angkatan"
-                hidden
-              >
-                <option value="">Semua Angkatan</option>
-                <!-- Options akan diisi otomatis oleh JavaScript -->
-              </select>
-            </div>
-
-            <div id="sort-wrapper">
-              <label for="sort">Urutkan Data:</label>
-              <div class="trigger">
-                <span
-                  ><img
-                    src="../assets/fa-sliders.svg"
-                    alt="Sliders"
-                    class="icon2"
-                  />
-                  Default</span
-                >
-                <img
-                  src="../assets/fa-chevron-down.svg"
-                  alt="Chevron Down"
-                  class="icon-sort"
-                  id="sort-icon"
-                />
-              </div>
-
-              <ul class="options">
-                <li data-value="">
-                  <img
-                    src="../assets/fa-sliders.svg"
-                    alt="Sliders"
-                    class="icon2"
-                  />
-                  Default
-                </li>
-                <li data-value="nama-asc">
-                  <img
-                    src="../assets/fa-arrow-up-a-z.svg"
-                    alt="Arrow Up A-Z"
-                    class="icon2"
-                  />
-                  Nama
-                </li>
-                <li data-value="nama-desc">
-                  <img
-                    src="../assets/fa-arrow-down-a-z.svg"
-                    alt="Arrow Down Z-A"
-                    class="icon2"
-                  />
-                  Nama
-                </li>
-                <li data-value="nim-asc">
-                  <img
-                    src="../assets/fa-arrow-up-1-9.svg"
-                    alt="Arrow Up 1-9"
-                    class="icon2"
-                  />
-                  NIM
-                </li>
-                <li data-value="nim-desc">
-                  <img
-                    src="../assets/fa-arrow-down-9-1.svg"
-                    alt="Arrow Down 9-1"
-                    class="icon2"
-                  />
-                  NIM
-                </li>
-                <li data-value="angkatan-asc">
-                  <img
-                    src="../assets/fa-arrow-up-1-9.svg"
-                    alt="Arrow Up 1-9"
-                    class="icon2"
-                  />
-                  Angkatan
-                </li>
-                <li data-value="angkatan-desc">
-                  <img
-                    src="../assets/fa-arrow-down-9-1.svg"
-                    alt="Arrow Down 9-1"
-                    class="icon2"
-                  />
-                  Angkatan
-                </li>
-                <li data-value="jurusan-asc">
-                  <img
-                    src="../assets/fa-arrow-up-a-z.svg"
-                    alt="Arrow Up A-Z"
-                    class="icon2"
-                  />
-                  Jurusan
-                </li>
-                <li data-value="jurusan-desc">
-                  <img
-                    src="../assets/fa-arrow-down-a-z.svg"
-                    alt="Arrow Down Z-A"
-                    class="icon2"
-                  />
-                  Jurusan
-                </li>
-              </ul>
-
-              <select
-                id="sort"
-                name="sort"
-                aria-label="Urutkan Mahasiswa"
-                hidden
-              >
-                <option value="">Default</option>
-                <option value="nama-asc">Nama Asc</option>
-                <option value="nama-desc">Nama Desc</option>
-                <option value="nim-asc">NIM Asc</option>
-                <option value="nim-desc">NIM Desc</option>
-                <option value="angkatan-asc">Angkatan Asc</option>
-                <option value="angkatan-desc">Angkatan Desc</option>
-                <option value="jurusan-asc">Jurusan Asc</option>
-                <option value="jurusan-desc">Jurusan Desc</option>
-              </select>
             </div>
           </div>
         </div>
@@ -274,12 +493,26 @@
             </caption>
             <thead>
               <tr>
-                <th>No.</th>
+                <th class="col-select">
+                  <label
+                    class="checkbox-control"
+                    aria-label="Pilih semua data mahasiswa"
+                  >
+                    <input type="checkbox" id="checkbox-select-all" />
+                    <span class="checkbox-custom"></span>
+                  </label>
+                </th>
+                <th class="col-number">No.</th>
                 <th>Nama</th>
                 <th>NIM</th>
-                <th>Jurusan</th>
+                <th>Jenis Kelamin</th>
+                <th>Program Studi</th>
                 <th>Angkatan</th>
+                <th>Email</th>
+                <th>IPK</th>
                 <th>Alamat</th>
+                <th>Catatan</th>
+                <th>Foto</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -287,6 +520,54 @@
               <!-- Baris tabel akan dirender melalui JavaScript -->
             </tbody>
           </table>
+        </div>
+
+        <div class="table-footer-controls">
+          <div class="footer-selection">
+            <button
+              type="button"
+              id="btn-pilih-semua"
+              class="control-button light"
+            >
+              Pilih Semua
+            </button>
+            <button
+              type="button"
+              id="btn-hapus-terpilih"
+              class="control-button"
+            >
+              Hapus Terpilih
+            </button>
+          </div>
+
+          <div class="footer-pagination">
+            <div id="table-pagination">
+              <span id="pagination-info">Halaman 1 dari 1</span>
+              <div class="pagination-buttons">
+                <button
+                  type="button"
+                  id="btn-prev-page"
+                  class="pagination-nav-btn"
+                  aria-label="Halaman sebelumnya"
+                >
+                  <img src="../assets/arrow-left.svg" alt="Sebelumnya" />
+                </button>
+                <div
+                  class="pagination-pages"
+                  id="pagination-pages"
+                  aria-label="Navigasi halaman"
+                ></div>
+                <button
+                  type="button"
+                  id="btn-next-page"
+                  class="pagination-nav-btn"
+                  aria-label="Halaman selanjutnya"
+                >
+                  <img src="../assets/arrow-right.svg" alt="Selanjutnya" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <!-- TABEL DATA MAHASISWA END -->

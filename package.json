@@ -1,0 +1,23 @@
+{
+  "name": "sistem-manajemen-mahasiswa",
+  "version": "1.0.0",
+  "description": "Aplikasi web sederhana untuk mengelola data mahasiswa dengan fitur CRUD, import/export, dan autentikasi",
+  "main": "src/pages/index.html",
+  "keywords": [
+    "student-management",
+    "crud",
+    "javascript",
+    "web-application",
+    "vanilla-js"
+  ],
+  "author": {
+    "name": "Muh. Fajri Farid",
+    "email": "fajrijry14@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fajri-playground/pemweb-c-202501"
+  },
+  "homepage": "https://data-mahasiswa.fajrifarid.com"
+}

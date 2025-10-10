@@ -1,15 +1,17 @@
 /* import font */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-/* Variable warna untuk kemudahan dan konsistensi */
+/* global color variables start */
 :root {
   --color-primary: #1976d2;
   --color-primary-hover: #1565c0;
+  --color-primary-light: #f1f7ff;
   --color-text-dark: #313131;
   --color-text-light: #ffffff;
   --color-muted: #707070;
   --color-muted-hover: #555555;
   --color-background: #f3f6fb;
+  --color-background-light: #fafafa;
   --color-card: #ffffff;
   --color-border: #e0e0e0;
   --color-secondary: #e0e0e0;
@@ -18,9 +20,11 @@
   --color-danger: #e53935;
   --color-danger-hover: #d32f2f;
   --color-white: #fff;
+  --color-disabled: #f1f2f4;
 }
+/* global color variables end */
 
-/* Global Styles */
+/* global reset styles start */
 * {
   margin: 0;
   padding: 0;
@@ -47,8 +51,16 @@ main {
   display: flex;
   padding: 2rem 1rem;
 }
+/* global reset styles end */
 
-/* header and footer style start */
+/* app lock state start */
+body.app-locked {
+  visibility: hidden;
+  pointer-events: none;
+}
+/* app lock state end */
+
+/* global header and footer style start */
 header,
 footer {
   background: var(--color-primary);
@@ -65,4 +77,4 @@ header h1 {
 footer p {
   font-size: 0.9rem;
 }
-/* header and footer style end */
+/* global header and footer style end */

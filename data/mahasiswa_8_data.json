@@ -1,0 +1,98 @@
+[
+  {
+    "nama": "Bagas Pratama",
+    "nim": "D121231051",
+    "programStudi": "Teknik Informatika",
+    "angkatan": "2023",
+    "alamat": "Makassar",
+    "email": "bagas.pratama@unhas.ac.id",
+    "ipk": 3.58,
+    "catatan": "Juara 2 Hackathon kampus.",
+    "jenisKelamin": "Laki-laki",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Chelsea Wulandari",
+    "nim": "D021231052",
+    "programStudi": "Teknik Mesin",
+    "angkatan": "2023",
+    "alamat": "Parepare",
+    "email": "chelsea.wulandari@unhas.ac.id",
+    "ipk": 3.46,
+    "catatan": "Aktif sebagai asisten laboratorium manufaktur.",
+    "jenisKelamin": "Perempuan",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Daffa Rahadian",
+    "nim": "D041221053",
+    "programStudi": "Teknik Elektro",
+    "angkatan": "2022",
+    "alamat": "Gowa",
+    "email": "daffa.rahadian@unhas.ac.id",
+    "ipk": 3.71,
+    "catatan": "Ketua divisi riset robotik.",
+    "jenisKelamin": "Laki-laki",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Evelyn Paramita",
+    "nim": "D011231054",
+    "programStudi": "Teknik Sipil",
+    "angkatan": "2023",
+    "alamat": "Manado",
+    "email": "evelyn.paramita@unhas.ac.id",
+    "ipk": 3.63,
+    "catatan": "Sedang magang di perusahaan konstruksi lokal.",
+    "jenisKelamin": "Perempuan",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Fikri Anugrah",
+    "nim": "D071221055",
+    "programStudi": "Teknik Industri",
+    "angkatan": "2022",
+    "alamat": "Bantaeng",
+    "email": "fikri.anugrah@unhas.ac.id",
+    "ipk": 3.42,
+    "catatan": "Koordinator acara pelatihan Six Sigma.",
+    "jenisKelamin": "Laki-laki",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Gisella Paramitha",
+    "nim": "D031231056",
+    "programStudi": "Teknik Perkapalan",
+    "angkatan": "2023",
+    "alamat": "Makassar",
+    "email": "gisella.paramitha@unhas.ac.id",
+    "ipk": 3.5,
+    "catatan": "Menjadi relawan edukasi keselamatan maritim.",
+    "jenisKelamin": "Perempuan",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Haryanto Nugroho",
+    "nim": "D061211057",
+    "programStudi": "Teknik Geologi",
+    "angkatan": "2021",
+    "alamat": "Kendari",
+    "email": "haryanto.nugroho@unhas.ac.id",
+    "ipk": 3.39,
+    "catatan": "Surveyor lapangan proyek pemetaan tambang.",
+    "jenisKelamin": "Laki-laki",
+    "fotoUrl": ""
+  },
+  {
+    "nama": "Intan Salsabila",
+    "nim": "D131221058",
+    "programStudi": "Teknik Lingkungan",
+    "angkatan": "2022",
+    "alamat": "Palu",
+    "email": "intan.salsabila@unhas.ac.id",
+    "ipk": 3.77,
+    "catatan": "Penanggung jawab program bank sampah kampus.",
+    "jenisKelamin": "Perempuan",
+    "fotoUrl": ""
+  }
+]

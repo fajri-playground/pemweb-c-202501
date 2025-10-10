@@ -1,10 +1,11 @@
-/* main khusus untuk index */
+/* beranda main style start */
 main {
   align-items: center;
   justify-content: center;
 }
+/* beranda main style end */
 
-/* Hero section */
+/* beranda hero section style start */
 #hero {
   text-align: center;
   padding: 3rem 2rem;
@@ -31,7 +32,9 @@ main {
   margin-bottom: 2rem;
   line-height: 1.6;
 }
+/* beranda hero section style end */
 
+/* beranda button style start */
 .btn-login {
   display: inline-block;
   padding: 0.9rem 1.8rem;
@@ -53,3 +56,4 @@ main {
 .btn-login:active {
   transform: translateY(0);
 }
+/* beranda button style end */
