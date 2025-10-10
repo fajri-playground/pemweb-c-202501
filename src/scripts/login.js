@@ -3,11 +3,17 @@
   const EYE_OPEN_ICON = "../assets/eye-solid-full.svg";
   const EYE_CLOSED_ICON = "../assets/eye-slash-solid-full.svg";
 
+  function resolveAppPath(page) {
+    const pathname = window.location.pathname;
+    const usesSrcPages = pathname.includes("/src/pages/");
+    return usesSrcPages ? `/src/pages/${page}/index.html` : `/${page}`;
+  }
+
   // Cegah akses halaman klw udh login
   const activeUser = sessionStorage.getItem(SESSION_KEY);
   if (activeUser) {
     alert("Anda sudah login");
-    window.location.href = "/src/pages/dasbor.html";
+    window.location.href = resolveAppPath("dasbor");
     return;
   }
 
@@ -112,6 +118,6 @@
     );
 
     alert("Login berhasil! Selamat datang kembali.");
-    window.location.href = "/src/pages/dasbor.html";
+    window.location.href = resolveAppPath("dasbor");
   });
 })();

@@ -12,6 +12,13 @@ const initialDataSource =
     ? window.INITIAL_MAHASISWA_DATA
     : [];
 
+const resolveAppPath = (page) => {
+  if (typeof window === "undefined") return page;
+  const pathname = window.location.pathname || "";
+  const usesSrcPages = pathname.includes("/src/pages/");
+  return usesSrcPages ? `/src/pages/${page}/index.html` : `/${page}`;
+};
+
 if (!Array.isArray(initialDataSource) || initialDataSource.length === 0) {
   console.warn(
     "INITIAL_MAHASISWA_DATA tidak ditemukan. Inisialisasi data awal sebagai array kosong."
@@ -3179,7 +3186,7 @@ if (btnLogout) {
   btnLogout.addEventListener("click", () => {
     if (confirm("Yakin ingin keluar?")) {
       sessionStorage.removeItem("crud_active_user"); // hapus session
-      window.location.href = "./login.html";
+      window.location.href = resolveAppPath("login");
     }
   });
 }
@@ -3190,7 +3197,7 @@ if (btnLogout) {
   const activeUser = sessionStorage.getItem("crud_active_user");
   if (!activeUser) {
     alert("Silakan login terlebih dahulu!");
-    window.location.href = "./login.html";
+    window.location.href = resolveAppPath("login");
     return;
   }
   document.body.classList.remove("app-locked");
